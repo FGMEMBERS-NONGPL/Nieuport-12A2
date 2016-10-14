@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>Nieuport-12.a2.ac</path>
+
+
+
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <condition>
+      <property>sim/rendering/rembrandt/enabled</property>
+    </condition>
+    <object-name>perspex</object-name>
+    <object-name>propfast</object-name>
+	<object-name>wing-trans</object-name>
+  </effect>
+
+<model>
+    <path>Aircraft/Nieuport-12A2/Models/Instruments/panel.xml</path>
+    <offsets>
+      <x-m>  0.0 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m> 0.0 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Nieuport-12A2/Models/Pilot/pilot.xml</path>
+    <offsets>
+      <x-m>  0.03 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  -0.106 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Nieuport-12A2/Models/Pilot/observer.xml</path>
+    <offsets>
+      <x-m>  0.814 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  -0.106 </z-m>
+    </offsets>
+  </model>
+
+  <!-- prop animation --> 
+  <animation>
+    <name>PropComplete</name>
+    <object-name>propfast</object-name>
+    <object-name>propbol</object-name>
+    <object-name>LeRhone</object-name>
+	<object-name>prophub</object-name>
+    <object-name>propeller</object-name>
+  </animation>
+
+  <!-- prop and engine section animation -->
+  <animation>
+    <type>select</type>
+    <object-name>propfast</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value>400</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+
+  <animation>
+    <type>select</type>
+    <object-name>propeller</object-name>
+    <condition>
+      <less-than>
+        <property>engines/engine[0]/rpm</property>
+	<value>420</value>
+      </less-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>PropComplete</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value> 20 </value>
+      </greater-than>
+    </condition>
+    <property>engines/engine[0]/rpm</property>
+    <factor> 1 </factor>
+    <center>
+      <x-m> -1.46 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.00 </z-m>
+    </center>
+    <axis>
+      <x> -1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+  
+   
+  <!-- ailerons -->
+  <animation>
+    <type>rotate</type>
+    <object-name>leftaileron</object-name>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <factor> 18 </factor>
+    <axis>
+      <x1-m>  0.402 </x1-m>
+      <y1-m> -4.374 </y1-m>
+      <z1-m> 0.8782 </z1-m>
+      <x2-m>  0.3249 </x2-m>
+      <y2-m> -2.4141 </y2-m>
+      <z2-m>  0.8668 </z2-m>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>rightaileron</object-name>
+    <property>surface-positions/right-aileron-pos-norm</property>
+    <factor> -18 </factor>
+    <axis>
+      <x1-m>  0.402 </x1-m>
+      <y1-m>  4.374 </y1-m>
+      <z1-m> 0.8782 </z1-m>
+      <x2-m>  0.3249 </x2-m>
+      <y2-m>  2.4141 </y2-m>
+      <z2-m>  0.8668 </z2-m>
+    </axis>
+  </animation>
+
+ <!-- aileron horns-pushrods -->
+
+  <animation>
+    <type>rotate</type>
+    <object-name>L-bellcrank</object-name>
+    <object-name>L-aileronrod</object-name>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <factor> 18 </factor>
+    <axis>
+      <x1-m>  0.3249 </x1-m>
+      <y1-m> -2.4141 </y1-m>
+      <z1-m>  0.8668 </z1-m>
+      <x2-m>  0.2081 </x2-m>
+      <y2-m> -0.347 </y2-m>
+      <z2-m>  0.8805 </z2-m>
+    </axis>
+  </animation>
+
+   <animation>
+    <type>rotate</type>
+    <object-name>L-aileronrod</object-name>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <factor> -18 </factor>
+    <center>
+      <x-m> -0.0263 </x-m>
+      <y-m> -0.358 </y-m>
+      <z-m> 0.924 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1.0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>R-bellcrank</object-name>
+    <object-name>R-aileronrod</object-name>
+    <property>surface-positions/right-aileron-pos-norm</property>
+    <factor> -18 </factor>
+    <axis>
+     <x1-m>  0.3249 </x1-m>
+      <y1-m>  2.4141 </y1-m>
+      <z1-m>  0.8668 </z1-m>
+      <x2-m>  0.2081 </x2-m>
+      <y2-m>  0.347 </y2-m>
+      <z2-m>  0.8805 </z2-m>
+    </axis>
+  </animation>
+
+   <animation>
+    <type>rotate</type>
+    <object-name>R-aileronrod</object-name>
+    <property>surface-positions/right-aileron-pos-norm</property>
+    <factor> -18 </factor>
+    <center>
+      <x-m> -0.0263 </x-m>
+      <y-m> 0.358 </y-m>
+      <z-m> 0.924 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1.0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <!-- elevators -->
+  <animation>
+    <type>rotate</type>
+    <object-name>elevators</object-name>
+    <property>surface-positions/elevator-pos-norm</property>
+    <factor> 14 </factor>
+    <center>
+      <x-m> 4.032 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.39306 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <!-- rudder animation -->
+  <animation>
+    <type>rotate</type>
+    <object-name>rudder</object-name>
+    <property>surface-positions/rudder-pos-norm</property>
+    <factor> 22 </factor>
+    <center>
+      <x-m> 4.0315 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.2427 </z-m>
+    </center>
+    <axis>
+      <x> 0.0017 </x>
+      <y> 0 </y>
+      <z> 1 </z>
+    </axis>
+  </animation>
+
+  <!-- Compression -->
+  <animation>
+    <name>leftsupension</name>
+    <object-name>axle</object-name>
+    <object-name>leftwheel</object-name>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>leftsupension</object-name>
+    <property>gear/gear[0]/compression-norm</property>
+    <interpolation>
+      <entry><ind> 0 </ind><dep>   0 </dep></entry>
+      <entry><ind> 1 </ind><dep> -3.5 </dep></entry>
+    </interpolation>
+    <center>
+     <x-m> -0.7059 </x-m>
+     <y-m>  0.6709 </y-m>
+     <z-m> -1.2282 </z-m>
+    </center>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <name>rightsuspension</name>
+    <object-name>axle</object-name>
+    <object-name>rightwheel</object-name>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>rightsuspension</object-name>
+    <property>gear/gear[1]/compression-norm</property>
+    <interpolation>
+      <entry><ind> 0 </ind><dep>  0 </dep></entry>
+      <entry><ind> 1 </ind><dep> 3.5 </dep></entry>
+    </interpolation>
+    <center>
+     <x-m> -0.7059 </x-m>
+     <y-m> -0.6709 </y-m>
+     <z-m> -1.2282 </z-m>
+    </center>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>tailstrut</object-name>
+    <property>gear/gear[2]/compression-norm</property>
+    <interpolation>
+      <entry><ind> 0 </ind><dep>  0 </dep></entry>
+      <entry><ind> 1 </ind><dep> -7 </dep></entry>
+    </interpolation>
+    <center>
+     <x-m>  3.167 </x-m>
+     <y-m>  0.000 </y-m>
+     <z-m>  -0.2137 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <!-- wheel rotation animation -->
+  <animation>
+    <type>spin</type>
+    <object-name>leftwheel</object-name>
+    <property>gear/gear[0]/rollspeed-ms</property>
+    <factor> -30 </factor>
+    <center>
+     <x-m> -0.7059 </x-m>
+     <y-m> -0.794 </y-m>
+     <z-m> -1.2282 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>rightwheel</object-name>
+    <property>gear/gear[1]/rollspeed-ms</property>
+    <factor> -30 </factor>
+    <center>
+     <x-m> -0.7059 </x-m>
+     <y-m>  0.794 </y-m>
+     <z-m> -1.2282 </z-m>
+
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+<!-- cockpit -->
+
+	<!-- Joystick -->
+	<animation>
+		<object-name>joystick</object-name>
+            <object-name>obj9</object-name>
+            <object-name>joystickfulcrum</object-name>
+		<property>controls/flight/aileron</property>
+		<type>rotate</type>
+		<factor>12</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-0.3612</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.3409</z-m>
+		</center>
+	</animation>
+	<animation>
+		<object-name>joystick</object-name>
+		<property>controls/flight/elevator</property>
+		<type>rotate</type>
+		<factor>12</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-0.548</x-m>
+			<y-m>0.000</y-m>
+			<z-m>-0.3419</z-m>
+		</center>
+	</animation>
+
+ <!-- rudderbar -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>rudderbar</object-name>
+  <property>controls/flight/rudder</property>
+  <factor>27</factor>
+  <center>
+   <x-m> -0.8919</x-m>
+   <y-m> 0.00</y-m>
+   <z-m>-0.352</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+
+
+<!-- throttle -->
+ 
+<animation>
+  <type>rotate</type>
+  <object-name>throttle-lever</object-name>
+  <property>/controls/engines/engine/throttle</property>
+  <factor>-55</factor>
+  <center>
+	<x-m> 0.3755</x-m>
+	<y-m>-0.292</y-m>
+	<z-m>0.022196</z-m>
+  </center>
+ <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+    <!-- observer/gun animation -->
+  <animation>
+    <name>observerturret</name>
+    <object-name>LewisGun</object-name>
+    <object-name>drum</object-name>
+    <object-name>lewismount</object-name>
+  </animation>
+
+  <animation>
+    <name>observerturretgun</name>
+    <object-name>drum</object-name>
+    <object-name>LewisGun</object-name>
+  </animation>
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>observerturret</object-name>
+    <property>sim/model/turret[0]/heading</property>
+    <offset-deg>180</offset-deg>
+    <center>
+      <x-m>  1.6784 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  0.6641 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> 1 </z>
+    </axis>
+  </animation>
+  
+    <animation>
+    <type>rotate</type>
+    <object-name>observerturretgun</object-name>
+    <property>sim/model/turret[0]/pitch</property>
+    <factor>1</factor>
+    <offset-deg>0</offset-deg>
+    <center>
+      <x-m>  1.7418 </x-m>
+      <y-m>  0.00 </y-m>
+      <z-m>  0.7245 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> -1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+
+</PropertyList>
+

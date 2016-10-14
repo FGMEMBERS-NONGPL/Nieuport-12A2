@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+
+************************************************************************
+-->
+
+
+<PropertyList>
+
+    <note>
+        This model was created using publicly available data, publicly available
+        technical reports, textbooks, and guesses. It contains no proprietary or
+        restricted data. It has been validated only to the extent that it seems
+        to "fly right", and possibly to comply to published, publicly known,
+        performance data (maximum speed, endurance, etc.). Thus, this model
+        is meant for educational and entertainment purposes only.
+
+        This simulation model is not endorsed by any manufacturer, nor is the developer asking.
+    </note>
+
+ <sim include="Systems/views.xml">
+
+	<description>Nieuport-12A2</description>
+        <author>LesterBoffo FDM, 3D model</author>
+        <status>"CREATIVE COMMON BY-NC-SA Copyright"</status>
+        <version>0.01 yasim revision  2015-08-28</version>
+
+	<flight-model archive="y">yasim</flight-model>
+	<aero archive="y">Nieuport-12A2</aero>
+	<model>
+		<path archive="y">Aircraft/Nieuport-12A2/Models/nieuport12a2.xml</path>
+	</model>
+	
+
+    <submodels> 
+      <serviceable type="bool">true</serviceable>
+      <path>Aircraft/Nieuport-12A2/Models/Effects/guns/submodels.xml</path>
+    </submodels>
+
+        <startup>
+            <splash-texture>Aircraft/Nieuport-12A2/splash.png</splash-texture>
+        </startup>
+
+	<!--<view>
+		<internal archive="y">true</internal>
+		<config>
+				<x-offset-m archive="y">0</x-offset-m>
+                        <y-offset-m archive="y">0.785</y-offset-m>
+                        <z-offset-m archive="y">-0.485</z-offset-m>
+				<pitch-offset-deg archive="y">-4.0</pitch-offset-deg>
+				<default-field-of-view-deg type="double">68.0</default-field-of-view-deg>
+		</config>
+	</view> -->
+
+        <current-view>
+            <field-of-view type="double">62.0</field-of-view>
+        </current-view>
+        <chase-distance-m type="double">-15.0</chase-distance-m>
+
+	<sound>
+		<audible>true</audible>
+		<path archive="y">Aircraft/Nieuport-12A2/Sounds/Nieuport-12A2-sound.xml</path>
+	</sound>
+
+	   <menubar include="Nasal/nieuport-12-a2-menu.xml"/>
+
+         <!-- Payload -->
+  <weight n="0">
+      <name>Pilot</name>
+      <weight-lb>160</weight-lb>
+      <max-lb>220</max-lb>
+      <min-lb>120</min-lb>
+  </weight> 
+
+  <weight n="1">
+      <name>Observer</name>
+      <weight-lb>0</weight-lb>
+      <max-lb>200</max-lb>
+      <min-lb>0</min-lb>
+  </weight>
+
+ </sim>
+
+
+ <autopilot>
+     <settings>
+         <target-altitude-ft type="float">2000</target-altitude-ft>
+         <heading-bug-deg type="float">330</heading-bug-deg>
+     </settings>
+ </autopilot>
+ 
+ <input>
+   <keyboard include="Nasal/nieuport-12-a2-keyboard.xml"/>
+ </input>
+
+ <controls>
+	<gear>
+		<brake-parking type="double">1.0</brake-parking>
+	</gear>
+ </controls>
+
+
+ <nasal>
+    <guns>
+      <file>Aircraft/Nieuport-12A2/Systems/weapons.nas</file>
+      <file>Aircraft/Nieuport-12A2/Systems/revi.nas</file>
+      <!-- <file>Aircraft/Nieuport-12A2/Systems/turrets.nas</file> --> 
+    </guns>
+	<Nieuport-12A2>
+	 <file>Aircraft/Nieuport-12A2/Nasal/eng_coupe-utils.nas</file>
+     </Nieuport-12A2>
+ </nasal>
+
+</PropertyList>

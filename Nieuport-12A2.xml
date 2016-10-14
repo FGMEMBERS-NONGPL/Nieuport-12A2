@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+
+<!--
+************************************************************************
+YASim aerodynamic model for FG Nieuport 12-A2, FDM made/adapted by Lester Boffo.
+
+Specifications: from http://en.wikipedia.org/wiki/Nieuport_12
+
+General characteristics
+
+    Crew: 1
+    Length: 18 ft 10 in (5.73 m)
+    Wingspan: 26 ft 6 in (8 m)
+    Height: 10 ft 6 in (3.2 m)
+    Wing area: 231 ft2 (21.46 m2)
+    Empty weight: 1,101 lb (500 kg)
+    Loaded weight: 1,541 lb (700 kg)
+    Powerplant: 1 x Le-Rhone 9J rotary engine, 110 hp (80 kW)
+
+Performance
+
+    Maximum speed: 93 mph (187 km/h) at 5,000 ft (1,830 m)
+    Endurance: 2 hrs 45 min
+    Service ceiling: 15,380 ft (4,690 m)
+    Wing loading: 6.13 lb/ft2 (29.92 kg/m2)
+    Time to 6,000 ft (1,830 m): 5 min 50 s
+    Time to 16,400 ft (5,000 m): 26 min 30 s
+
+Armament
+
+    Guns: 1 x 0.303 in Vickers machine gun
+          1 x 0.303 Lewis 0n Eteve pintle mount in observers cockpit
+
+************************************************************************
+-->
+<airplane mass="1100">
+
+<!-- Approach configuration -->
+<approach speed="38" aoa="6" fuel="0.2">
+  <control-setting axis="/controls/engines/engine[0]/throttle" value="0.19"/>
+  <control-setting axis="/controls/engines/engine[0]/mixture" value="1.0"/>
+</approach>
+
+<!-- Cruise configuration -->
+<cruise speed="84" alt="5000" fuel="0.76">
+  <control-setting axis="/controls/engines/engine[0]/throttle" value="1.0"/>
+  <control-setting axis="/controls/engines/engine[0]/mixture" value="0.79"/>
+</cruise>
+
+<!-- pilot's eyepoint -->
+<cockpit x="-0.62" y="0" z="0.62"/>
+
+<fuselage ax="1.524" ay="0.0" az="0.0" bx="1.134" by="0.0" bz="0.0" width="0.892" taper="1.0" midpoint="1.0"/>
+<fuselage ax="1.134" ay="0.0" az="0.0" bx="-1.022" by="0.0" bz="0.052" width="0.749" taper="0.85" midpoint="0.49" cy="2.47" cz="2.27"/>
+<fuselage ax="-1.022" ay="0.0" az="0.052" bx="-4.0321" by="0.0" bz="0.236" width="0.74" taper="0.20" midpoint="0.0" cy="3.58" cz="2.7"/>
+
+
+<!--Upper Wing -->
+<wing x=" 0.205" y="0.0" z="0.90054"
+          length="4.535" 
+          chord="1.432"
+          taper="1.15"
+          incidence="1.55"
+          twist="0.85"
+          sweep="6.0"
+          dihedral="2.0"
+          camber="0.112">
+  <stall aoa="17" width="4" peak="1.75"/>
+  <flap1 start="0.67" end="1.07" lift="1.3" drag="1.27"/>
+        <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
+        <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/>
+      
+        <control-output control="FLAP1" side="left" prop="/surface-positions/left-aileron-pos-norm"/>
+        <control-output control="FLAP1" side="right" prop="/surface-positions/right-aileron-pos-norm"/>
+</wing>
+
+
+  <!-- Low wing -->
+  <mstab x="-0.147" y="0.362" z="-0.296" 
+        chord="0.832" 
+        length="3.383" 
+        taper="1" 
+        incidence="1.85"
+        twist="-0.5"
+        sweep="6.0"
+        dihedral="6.0" 
+        camber="0.102">
+        <stall aoa="17" width="5.0" peak="2.5"/>
+  </mstab>
+
+
+<hstab x="-4.087" y="0.05" z="0.40"
+       chord="0.974"
+       length="1.173"
+       effectiveness="1.51"
+       taper="1.0"
+       incidence="-0.6"
+       camber="-0.001"
+       sweep="3.0">
+  <stall aoa="18" width="5" peak="2.5"/>
+  <flap0 start="0.0" end="1.0" lift="1.75" drag="1.20"/>
+  <control-input axis="/controls/flight/elevator" control="FLAP0"/>
+  <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+  <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+</hstab>
+
+<!-- rudder has to be able to counteract aileron drag -->
+<vstab x="-4.332" y="0" z="0.170"
+       taper="0.96" 
+       length="0.890"
+       chord="0.92"
+       effectiveness="1.54"
+       sweep="5">
+  <stall aoa="22" width="5" peak="2.5"/>
+  <flap0 start="-0.4" end="1" lift="1.45" drag="1.35"/>
+  <control-input axis="/controls/flight/rudder" square="true" control="FLAP0" invert="true"/>
+  <control-input axis="/controls/flight/rudder-trim" control="FLAP0" invert="true"/>
+  <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm"
+    min="1" max="-1"/>
+</vstab>
+
+  <!-- Engines      LeRhone 9J
+
+       Informations : https://en.wikipedia.org/wiki/Le_Rhone_9J
+
+General characteristics
+
+    Type: Nine-cylinder, single-row rotary engine
+    Bore: 112 mm (4.41 in)
+    Stroke: 170 mm (6.63 in)
+    Displacement: 15 L (911.4 cu in)
+    Diameter: 100.5 cm (39.6 in)
+    Dry weight: 146.5 kg (323 lb)
+
+Components
+
+    Valvetrain: Cam-operated single rocker for both inlet and exhaust valves
+    Oil system: Castor oil, total loss
+    Cooling system: Air-cooled
+
+Performance
+
+    Power output: 135 hp (100 kW) at 1,350 rpm (maximum)
+    Compression ratio: 5:1
+  -->
+
+
+
+<propeller x="1.3899" y="0.0" z="0.00" 
+           radius="1.23" 
+           mass="323"
+           moment="22"
+           blades="2"
+           cruise-power="104"
+           cruise-alt="5000"
+           cruise-speed="84" 
+           cruise-rpm="1210"
+           takeoff-power="110"
+           takeoff-rpm="1250">
+       <actionpt x="1.61" y="0.0" z="0.0015" />
+             <piston-engine eng-rpm="1250"
+                            alt="5000"
+                            eng-power="110"
+                            bore="4.41"
+                            stroke="6.63"
+                            compression="5.0"
+                            min-throttle="0.05"
+                            displacement="911.4"/>
+             <control-input control="THROTTLE" axis="/controls/engines/engine[0]/throttle" />
+             <control-input control="STARTER" axis="/controls/engines/engine[0]/starter" />
+             <control-input control="MAGNETOS" axis="/controls/engines/engine[0]/magnetos" />
+             <control-input control="MIXTURE" axis="/controls/engines/engine[0]/mixture" />
+  </propeller>
+
+ <!-- left main -->
+<gear x="0.703" y="0.782" z="-1.509"
+        compression="0.109"
+        spring="1.13"
+        damp="0.6"
+        rebound-damp="0.19"
+        dfric="1.07"
+        sfric ="0.6">
+  <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+</gear>
+
+ <!-- right main -->
+<gear x="0.703" y="-0.782" z="-1.509" 
+        compression="0.109"
+        spring="1.13"
+        damp="0.6"
+        rebound-damp="0.19"
+        dfric="1.07"
+        sfric ="0.6">
+  <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+</gear>
+
+<!-- Tail skid -->
+
+<gear x="-3.6012" y="0" z="-0.283"
+         compression="0.07"
+         spring="0.85"
+         damp="0.14"
+         castering="1"
+         dfric="0.89"
+         sfric="0.50">
+  <control-input axis="/controls/flight/rudder" control="STEER" src0="-1.0" src1="1.0" dst0="0.29" dst1="-0.29"/>
+</gear>
+
+
+  <!-- Fuel  -->  
+<!-- Guess on fuel tank position -->
+<tank x="0.85" y="0" z="0.224" capacity="190.4"/> 
+
+  <!-- simulated pilot and cargo weight -->
+
+  <weight x="0.31" y="0" z="0.06" mass-prop="/sim/weight[0]/weight-lb"/> 
+  <weight x="-0.502" y="0" z="0.06" mass-prop="/sim/weight[1]/weight-lb"/>
+
+<ballast x="-0.85" y="0" z="-2.9" mass="290"/>
+
+</airplane>
